@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hydna Paint</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" charset="utf-8"></script>
+  <script src="http://static.hydna.net/js/hydna.js"></script>
+  <script src="./script/deps/excanvas.js"></script>
+  <script src="./script/deps/json.js"></script>
+  <script src="./script/app.js"></script>
+  <link rel="stylesheet" href="./style/master.css" type="text/css" media="screen"/>
+</head>
+<body>
+  <header>
+    <h1>Hydna Paint</h1>
+    <ul class="picker" id="color">
+      <li class="active" id="color-red"><span>#B33924</span></li>
+      <li id="color-green"><span>#24B339</span></li>
+      <li id="color-blue"><span>#3924B3</span></li>
+    </ul>
+    <ul class="picker" id="stroke">
+      <li class="active" id="stroke-thin"><span>Thin</span></li>
+      <li id="stroke-medium"><span>Medium</span></li>
+      <li id="stroke-thick"><span>Thick</span></li>
+    </ul>
+  </header>
+  <section>
+    <canvas></canvas>
+  </section>
+</body>
