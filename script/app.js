@@ -53,7 +53,7 @@ $(document).ready(function() {
     var canvas = document.querySelector('canvas');
 
     // open a stream to hydna in read/write mode
-    var stream = new HydnaStream('flash.hydna.net:7010', 'rw', null, {
+    var stream = new HydnaStream('demo.hydna.net/1111', 'rw', null, {
         transport: 'ws',
     });
 
