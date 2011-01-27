@@ -24,7 +24,7 @@ header {
     left: 0;
     height: 40px;
     background: black;
-    background: -moz-linear-gradient(100% 100% 90deg, #333, #111);
+    background: -moz-linear-gradient(100% 100% 90deg, #111, #333);
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#111));
     -moz-box-shadow: inset rgba(255,255,255,0.3) 0px 0px 2px 0px;
     -webkit-box-shadow: inset rgba(255,255,255,0.3) 0px 0px 2px 0px;
@@ -64,7 +64,7 @@ header #stroke {
     display: inline-block;
     font-size: 12px;
     padding: 7px;
-    background: -moz-linear-gradient(100% 100% 90deg, #555, #222);
+    background: -moz-linear-gradient(100% 100% 90deg, #222, #555);
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555), to(#222));
     -webkit-box-shadow: inset rgba(255,255,255,0.3) 0px 0px 2px 0px;
     -moz-box-shadow: inset rgba(255,255,255,0.3) 0px 0px 2px 0px;
@@ -82,7 +82,7 @@ header #stroke {
 }
 
 .picker li.active {
-    background: -moz-linear-gradient(100% 100% 90deg, #151515, #555);
+    background: -moz-linear-gradient(100% 100% 90deg, #555, #151515);
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#151515), to(#555));
 }
 

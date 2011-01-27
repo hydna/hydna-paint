@@ -11,19 +11,19 @@ var paint = {
     init: function(canvas, stream) {
         paint.canvas = canvas;
         paint.stream = stream;
-        paint.context = canvas.getContext('2d');
-        canvas.onmousedown = paint.mousedown;
-        canvas.onmouseup = paint.mouseup;
-        canvas.onmousemove = paint.mousemove;
-        canvas.onselectstart = function() {
+        paint.context = canvas.get(0).getContext('2d');
+        canvas.bind('mousedown', paint.mousedown);
+        canvas.bind('mouseup', paint.mouseup);
+        canvas.bind('mousemove', paint.mousemove);
+        canvas.get(0).onselectstart = function() {
             // prevent cursor from changing.
             return false;
         };
-        window.onresize =  function() {
-            canvas.width = canvas.clientWidth;
-            canvas.height = canvas.clientHeight;
-        };
-        window.onresize();
+        $(window).bind('resize', function(event) {
+            canvas.get(0).width = canvas.width();
+            canvas.get(0).height = canvas.height();
+        });
+        $(window).resize();
     },
     mousedown: function(event) {
         paint.drawing = true;
@@ -33,9 +33,10 @@ var paint = {
     },
     mousemove: function(event) {
         if (paint.drawing) {
+            var position = paint.canvas.parent().position();
             paint.stream.send(JSON.stringify({
-                x: event.offsetX,
-                y: event.offsetY,
+                x: event.pageX - position.left,
+                y: event.pageY - position.top,
                 w: paint.sizes[$('#stroke li.active').text().toLowerCase()],
                 c: $('#color li.active').text()
             }));
@@ -50,7 +51,7 @@ var paint = {
 };
 
 $(document).ready(function() {
-    var canvas = document.querySelector('canvas');
+    var canvas = $('canvas');
 
     // open a stream to hydna in read/write mode
     var stream = new HydnaStream('demo.hydna.net/1111', 'rw');
