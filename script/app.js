@@ -12,9 +12,9 @@ var paint = {
         paint.canvas = canvas;
         paint.stream = stream;
         paint.context = canvas.get(0).getContext('2d');
-        canvas.bind('mousedown', paint.mousedown);
-        canvas.bind('mouseup', paint.mouseup);
-        canvas.bind('mousemove', paint.mousemove);
+        canvas.bind('mousedown touchstart', paint.mousedown);
+        canvas.bind('mouseup touchend', paint.mouseup);
+        canvas.bind('mousemove touchmove', paint.mousemove);
         canvas.get(0).onselectstart = function() {
             // prevent cursor from changing.
             return false;
@@ -27,20 +27,28 @@ var paint = {
     },
     mousedown: function(event) {
         paint.drawing = true;
+        return false;
     },
     mouseup: function(event) {
         paint.drawing = false;
+        return false;
     },
     mousemove: function(event) {
+        var e = (
+            window.event && window.event.targetTouches
+            ?window.event.targetTouches[0]
+            :event
+        );
         if (paint.drawing) {
             var position = paint.canvas.parent().position();
             paint.stream.send(JSON.stringify({
-                x: event.pageX - position.left,
-                y: event.pageY - position.top,
+                x: e.pageX - position.left,
+                y: e.pageY - position.top,
                 w: paint.sizes[$('#stroke li.active').text().toLowerCase()],
                 c: $('#color li.active').text()
             }));
         }
+        return false;
     },
     draw: function(x, y, width, color) {
         paint.context.fillStyle = color;  
