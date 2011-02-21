@@ -17,7 +17,7 @@ body {
 
 /* Header */
 
-header {
+div#header {
     position: absolute;
     top: 0;
     right: 0;
@@ -27,7 +27,7 @@ header {
     background: #2e3236;
 }
 
-header h1 {
+div#header h1 {
     position: absolute;
     top: 11px;
     left: 12px;
@@ -55,7 +55,7 @@ header #color {
     top: 7px;
 }
 
-header #stroke {
+div#header #stroke {
     position: absolute;
     right: 10px;
     top: 7px;
@@ -92,11 +92,9 @@ header #stroke {
 }
 
 .picker li.active {
-    background: #1b1d20;
-}
-
-.picker li.active span{
-    border: 1px solid #fdfefe;
+    background: #333;
+    background: -moz-linear-gradient(100% 100% 90deg, #555, #151515);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#151515), to(#555));
 }
 
 .picker li span {
@@ -143,7 +141,7 @@ header #stroke {
 
 /* Container */
 
-section#board {
+div#board {
     position: absolute;
     top: 40px;
     right: 0;
