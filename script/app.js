@@ -20,8 +20,8 @@ var paint = {
             return false;
         };
         $(window).bind('resize', function(event) {
-            canvas.get(0).width = canvas.width();
-            canvas.get(0).height = canvas.height();
+            canvas.get(0).width = canvas.parent().width();
+            canvas.get(0).height = canvas.parent().height();
         });
         $(window).resize();
     },
@@ -41,11 +41,12 @@ var paint = {
         );
         if (paint.drawing) {
             var position = paint.canvas.parent().position();
+
             paint.stream.send(JSON.stringify({
-                x: e.pageX - position.left,
-                y: e.pageY - position.top,
-                w: paint.sizes[$('#stroke li.active').text().toLowerCase()],
-                c: $('#color li.active').text()
+                x: e.clientX,
+                y: e.clientY - 40,
+                w: paint.sizes[$.trim($('#stroke li.active').text().toLowerCase())],
+                c: $.trim($('#color li.active').text())
             }));
         }
         return false;
@@ -62,7 +63,7 @@ $(document).ready(function() {
     var canvas = $('canvas');
 
     // open a stream to hydna in read/write mode
-    var stream = new HydnaStream('demo.hydna.net/1111', 'rw');
+    var stream = new HydnaStream('demo.hydna.net/1111', 'rw', null);
 
     // draw figure when data is received over stream
     stream.onmessage = function(data) {
@@ -74,6 +75,14 @@ $(document).ready(function() {
     stream.onopen = function() {
         paint.init(canvas, stream);
     };
+
+    stream.onerror = function() {
+        // console.log('error');
+    };
+
+    stream.onclose = function() {
+        // console.log('close');
+    }
 
     $('.picker li').click(function(event) {
         $(this).siblings().removeClass('active');
