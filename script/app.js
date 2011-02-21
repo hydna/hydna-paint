@@ -26,8 +26,8 @@ var paint = {
             return false;
         };
         $(window).bind('resize', function(event) {
-            canvas.get(0).width = canvas.width();
-            canvas.get(0).height = canvas.height();
+            canvas.get(0).width = canvas.parent().width();
+            canvas.get(0).height = canvas.parent().height();
         });
         $(window).resize();
     },
@@ -49,6 +49,7 @@ var paint = {
         );
         if (paint.drawing) {
             var position = paint.canvas.parent().position();
+<<<<<<< HEAD
             
             var new_x = e.clientX;
             var new_y = e.clientY - 40;
@@ -69,6 +70,15 @@ var paint = {
             
             paint.prev_x = new_x;
             paint.prev_y = new_y;
+=======
+
+            paint.stream.send(JSON.stringify({
+                x: e.clientX,
+                y: e.clientY - 40,
+                w: paint.sizes[$.trim($('#stroke li.active').text().toLowerCase())],
+                c: $.trim($('#color li.active').text())
+            }));
+>>>>>>> fixes to run on ie7.
         }
         return false;
     },
@@ -118,6 +128,14 @@ $(document).ready(function() {
     channel.onopen = function() {
         paint.init(canvas, channel);
     };
+
+    stream.onerror = function() {
+        // console.log('error');
+    };
+
+    stream.onclose = function() {
+        // console.log('close');
+    }
 
     $('.picker li').click(function(event) {
         $(this).siblings().removeClass('active');
