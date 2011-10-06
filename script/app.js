@@ -62,7 +62,7 @@ $(document).ready(function() {
     var canvas = $('canvas');
 
     // open a stream to hydna in read/write mode
-    var stream = new HydnaStream('demo.hydna.net/1111', 'rw');
+    var stream = new HydnaStream('wpilot.hydna.net/1111', 'rw');
 
     // draw figure when data is received over stream
     stream.onmessage = function(data) {
