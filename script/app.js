@@ -113,6 +113,7 @@ var paint = {
 $(document).ready(function() {
     var canvas = $('canvas');
 
+    // open a stream to hydna in read/write mode
     var channel = new HydnaChannel('simple-paint.hydna.net/1111', 'rw');
 
     // draw figure when data is received over channel
