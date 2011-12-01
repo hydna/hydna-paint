@@ -65,8 +65,8 @@ $(document).ready(function() {
     var channel = new HydnaChannel('public.hydna.net/1111', 'rw');
 
     // draw figure when data is received over channel
-    channel.onmessage = function(data) {
-        var graph = JSON.parse(data);
+    channel.onmessage = function(event) {
+        var graph = JSON.parse(event.data);
         paint.draw(graph.x, graph.y, graph.w, graph.c);
     };
 
