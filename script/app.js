@@ -129,14 +129,6 @@ $(document).ready(function() {
         paint.init(canvas, channel);
     };
 
-    stream.onerror = function() {
-        // console.log('error');
-    };
-
-    stream.onclose = function() {
-        // console.log('close');
-    }
-
     $('.picker li').click(function(event) {
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
