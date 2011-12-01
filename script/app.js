@@ -1,16 +1,16 @@
 var paint = {
     canvas: null,
     context: null,
-    stream: null,
+    channel: null,
     drawing: false,
     sizes: {
         thin: 2,
         medium: 4,
         thick: 8
     },
-    init: function(canvas, stream) {
+    init: function(canvas, channel) {
         paint.canvas = canvas;
-        paint.stream = stream;
+        paint.channel = channel;
         paint.context = canvas.get(0).getContext('2d');
         canvas.bind('mousedown touchstart', paint.mousedown);
         canvas.bind('mouseup touchend', paint.mouseup);
@@ -41,7 +41,7 @@ var paint = {
         );
         if (paint.drawing) {
             var position = paint.canvas.parent().position();
-            paint.stream.send(JSON.stringify({
+            paint.channel.send(JSON.stringify({
                 x: e.pageX - position.left,
                 y: e.pageY - position.top,
                 w: paint.sizes[$('#stroke li.active').text().toLowerCase()],
@@ -61,18 +61,18 @@ var paint = {
 $(document).ready(function() {
     var canvas = $('canvas');
 
-    // open a stream to hydna in read/write mode
-    var stream = new HydnaStream('wpilot.hydna.net/1111', 'rw');
+    // open a channel to hydna in read/write mode
+    var channel = new HydnaChannel('public.hydna.net/1111', 'rw');
 
-    // draw figure when data is received over stream
-    stream.onmessage = function(data) {
+    // draw figure when data is received over channel
+    channel.onmessage = function(data) {
         var graph = JSON.parse(data);
         paint.draw(graph.x, graph.y, graph.w, graph.c);
     };
 
-    // initiate paint when stream is ready.
-    stream.onopen = function() {
-        paint.init(canvas, stream);
+    // initiate paint when channel is ready.
+    channel.onopen = function() {
+        paint.init(canvas, channel);
     };
 
     $('.picker li').click(function(event) {
