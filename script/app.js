@@ -42,8 +42,8 @@ var paint = {
         if (paint.drawing) {
             var position = paint.canvas.parent().position();
             paint.channel.send(JSON.stringify({
-                x: e.pageX - position.left,
-                y: e.pageY - position.top,
+                x: e.clientX,
+                y: e.clientY - 40,
                 w: paint.sizes[$('#stroke li.active').text().toLowerCase()],
                 c: $('#color li.active').text()
             }));
