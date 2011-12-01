@@ -51,9 +51,9 @@ var paint = {
         return false;
     },
     draw: function(x, y, width, color) {
-        paint.context.fillStyle = color;  
+        paint.context.fillStyle = color;
         paint.context.beginPath();
-        paint.context.arc(x, y, width, 0, Math.PI * 2, true); 
+        paint.context.arc(x, y, width, 0, Math.PI * 2, true);
         paint.context.fill();
     }
 };
