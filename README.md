@@ -1,3 +1,3 @@
 ###hydna paint###
 
-A simple painting application.
+A simple multiuser painting application.
