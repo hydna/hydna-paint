@@ -55,7 +55,7 @@ header #color {
     top: 7px;
 }
 
-div#header #stroke {
+header #stroke {
     position: absolute;
     right: 10px;
     top: 7px;
