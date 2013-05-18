@@ -17,7 +17,7 @@ body {
 
 /* Header */
 
-header {
+div#header {
     position: absolute;
     top: 0;
     right: 0;
@@ -27,7 +27,7 @@ header {
     background: #2e3236;
 }
 
-header h1 {
+div#header h1 {
     position: absolute;
     top: 11px;
     left: 12px;
