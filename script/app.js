@@ -49,8 +49,6 @@ var paint = {
         );
         if (paint.drawing) {
             var position = paint.canvas.parent().position();
-<<<<<<< HEAD
-            
             var new_x = e.clientX;
             var new_y = e.clientY - 40;
             
@@ -70,7 +68,6 @@ var paint = {
             
             paint.prev_x = new_x;
             paint.prev_y = new_y;
-=======
 
             paint.stream.send(JSON.stringify({
                 x: e.clientX,
@@ -78,7 +75,6 @@ var paint = {
                 w: paint.sizes[$.trim($('#stroke li.active').text().toLowerCase())],
                 c: $.trim($('#color li.active').text())
             }));
->>>>>>> fixes to run on ie7.
         }
         return false;
     },
