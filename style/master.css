@@ -32,9 +32,22 @@ header h1 {
     top: 11px;
     left: 12px;
     font-size: 14px;
-    padding-left: 26px;
-    background: url(../images/mark.png) no-repeat left center;
 }
+
+header h1 a {
+  padding-left: 26px;
+  background: url(../images/mark.png) no-repeat left center;
+  text-decoration: none;
+  color: white;
+}
+
+header h1 .sub {
+  margin-left: 6px;
+  color: #666;
+  font-size: 12px;
+  font-weight: normal;
+}
+
 
 header #color {
     position: absolute;
