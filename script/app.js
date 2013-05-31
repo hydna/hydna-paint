@@ -68,13 +68,6 @@ var paint = {
             
             paint.prev_x = new_x;
             paint.prev_y = new_y;
-
-            paint.stream.send(JSON.stringify({
-                x: e.clientX,
-                y: e.clientY - 40,
-                w: paint.sizes[$.trim($('#stroke li.active').text().toLowerCase())],
-                c: $.trim($('#color li.active').text())
-            }));
         }
         return false;
     },
