@@ -4,9 +4,9 @@
   <title>Hydna Paint</title>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="http://cdn.hydna.com/1/hydna.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> 
   <script src="./script/deps/excanvas.js"></script>
   <script src="./script/deps/json.js"></script>
-  <script src="./script/app.js"></script>
   <link rel="stylesheet" href="./style/master.css" type="text/css" media="screen"/>
 </head>
 <body>
@@ -17,13 +17,9 @@
       <li id="color-green"><span>#59c94e</span></li>
       <li id="color-blue"><span>#396f8c</span></li>
     </ul>
-    <ul class="picker" id="stroke">
-      <li class="active" id="stroke-thin"><span>Thin</span></li>
-      <li id="stroke-medium"><span>Medium</span></li>
-      <li id="stroke-thick"><span>Thick</span></li>
-    </ul>
   </header>
   <div id="board">
-    <canvas></canvas>
+    <canvas id="canvas" width="720" height="480"></canvas>
   </div>
+  <script src="./script/app.js"></script>
 </body>
