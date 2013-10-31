@@ -80,7 +80,6 @@ function PaintChannel (url) {
     };
 
     channel.onclose = function (event) {
-      console.log("close");
       self.userId = null;
       self.userCount = 0;
       connected = false;
@@ -270,7 +269,6 @@ function PaintControls (target) {
   };
 
   target.addEventListener('change', function (event) {
-    console.log("CHANGE");
     // if (event.target.name == 'color') {
       event.preventDefault();
       self.color = event.target.value;
