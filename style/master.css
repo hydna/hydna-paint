@@ -1,138 +1,133 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/fontawesome-webfont.eot?v=4.0.1');
+  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.0.1') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff?v=4.0.1') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.0.1') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.0.1#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Nunito:700);
+
 * {
     margin: 0;
     padding: 0;
     line-height: normal;
 }
 
-html,
-body {
+html, body {
     width: 100%;
     height: 100%;
 }
 
 body {
     font-family: arial, sans-serif;
-    background: #f2f2f2;
+    background-color: #2e3236;
     overflow: hidden;
 }
 
-/* Header */
+ul {
+    list-style: none;
+}
 
-header {
+#container {
     position: absolute;
+    overflow: hidden;
     top: 0;
     right: 0;
+    bottom: 0;
     left: 0;
-    height: 40px;
-    color: #fdfefe;
-    background: #2e3236;
 }
-
-header h1 {
-    position: absolute;
-    top: 11px;
-    left: 12px;
-    font-size: 14px;
-}
-
-header h1 a {
-  padding-left: 26px;
-  background: url(../images/mark.png) no-repeat left center;
-  text-decoration: none;
-  color: white;
-}
-
-header h1 .sub {
-  margin-left: 6px;
-  color: #666;
-  font-size: 12px;
-  font-weight: normal;
-}
-
-
-header #color {
-    position: absolute;
-    right: 120px;
-    top: 7px;
-}
-
-header #stroke {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-}
-
-/* Pickers */
-
-.picker {
-    list-style: none;
-    display: inline-block;
-}
-
-.picker li {
-    float: left;
-    display: inline-block;
-    font-size: 12px;
-    padding: 6px 7px;
-    cursor: pointer;
-    background: #5e5c57;
-    border-left: 1px solid #1b1d20;
-    border-right: 1px solid #1b1d20;
-}
-
-.picker li:first-child {
-    border-radius: 5px 0 0 5px;
-    padding-left: 8px;
-    border: none;
-}
-
-.picker li:last-child {
-    border-radius: 0 5px 5px 0;
-    padding-right: 8px;
-    border: none;
-}
-
-.picker li.active {
-    background: #333;
-    background: -moz-linear-gradient(100% 100% 90deg, #555, #151515);
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#151515), to(#555));
-}
-
-.picker li span {
-    display: block;
-    width: 12px;
-    height: 12px;
-    overflow: hidden;
-    text-indent: -1000px;
-    border: 1px solid #EEE;
-}
-
-/* Colors */
-
-.picker #color-red span { background: #e53a3c; }
-.picker #color-green span { background: #59c94e; }
-.picker #color-blue span { background: #396f8c; }
 
 
 /* Container */
 
-div#board {
+#connect-indicator {
     position: absolute;
 
-    background: white;
-    border: 1px solid #bbb;
-    box-shadow: 1px 1px 10px #aaa;
+    margin-top: -15px;
+    margin-left: -100px;
+
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 30px;
+
+    text-align: center;
+
+    color: white;
+
+    -webkit-transition: opacity .5s;
+       -moz-transition: opacity .5s;
+        -ms-transition: opacity .5s;
+         -o-transition: opacity .5s;
+            transition: opacity .5s;
+}
+
+.online #connect-indicator {
+    opacity: 0;
+}
+
+#board {
+    opacity: 0;
+
+    -webkit-transition: opacity .5s;
+       -moz-transition: opacity .5s;
+        -ms-transition: opacity .5s;
+         -o-transition: opacity .5s;
+            transition: opacity .5s;
+}
+
+.online #board {
+    opacity: 1;
+}
+
+/*#board {
+    position: absolute;
+
+    -moz-box-sizing:border-box;
+         box-sizing:border-box;
 
     margin: -240px 0 0 -360px;
+
+    padding: 6px;
 
     top: 50%;
     left: 50%;
 
     width: 720px;
-    height: 480px;
+    height: 620px;
+}
+*/
+@media all {
+    #board {
+        position: absolute;
+
+        -moz-box-sizing:border-box;
+             box-sizing:border-box;
+
+        margin: 0 0 0 0;
+        padding: 6px 6px 0 6px;
+
+        top: 0;
+        left: 0;
+        bottom: 50px;
+
+        width: 100%;
+        height: auto;
+    }
 }
 
-canvas {
+#board canvas {
+
+    -moz-box-sizing:border-box;
+         box-sizing:border-box;
+
+    background-color: #F5F5DC;
+    background-image: url(../images/satinweave.png);
+
+    border-radius: 6px;
+
+    box-shadow: 1px 1px 10px #222;
 
     width: 100%;
     height: 100%;
@@ -140,4 +135,208 @@ canvas {
     cursor: crosshair;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
+}
+
+#controls {
+    position: absolute;
+
+    -moz-box-sizing:border-box;
+         box-sizing:border-box;
+
+    padding: 6px 6px 12px 6px;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+
+    overflow: hidden;
+}
+
+#controls > * {
+    float: left;
+}
+
+#controls .colors {
+    -moz-box-sizing:border-box;
+         box-sizing:border-box;
+
+    padding-left: 10px;
+
+    width: 70%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+#controls .colors li {
+    float: left;
+    margin: 0 3% 20px 0;
+    width: 32px;
+    height: 32px;
+}
+
+#controls .colors input {
+    display: none;
+}
+
+#controls .colors label {
+    display: inline-block;
+    border: none;
+    background-color: white;
+    border-radius: 28px;
+    width: 100%;
+    height: 100%;
+
+    outline: none;
+
+    -webkit-appearance: none;
+       -moz-appearance: none;
+}
+
+#controls .colors input:checked + label {
+    opacity: .6;
+    box-shadow: 0px 0px 4px rgba(0,0,0, .9);
+}
+
+#controls label[for="c8EAA79"] { background-color: #8EAA79; }
+#controls label[for="cFF9026"] { background-color: #FF9026; }
+#controls label[for="cEE4900"] { background-color: #EE4900; }
+#controls label[for="cC40800"] { background-color: #C40800; }
+#controls label[for="c050B01"] { background-color: #050B01; }
+#controls label[for="c1C6E67"] { background-color: #1C6E67; }
+#controls label[for="c1C8F77"] { background-color: #1C8F77; }
+#controls label[for="c9F976A"] { background-color: #9F976A; }
+#controls label[for="cD19C6F"] { background-color: #D19C6F; }
+#controls label[for="cD63333"] { background-color: #D63333; }
+#controls label[for="cFFFFFF"] { background-color: #FFFFFF; }
+#controls label[for="c002930"] { background-color: #002930; }
+#controls label[for="cF8F0AF"] { background-color: #F8F0AF; }
+#controls label[for="cAC4A00"] { background-color: #AC4A00; }
+#controls label[for="c000000"] { background-color: #000000; }
+
+
+#controls .users-online {
+    font-family: 'Nunito', sans-serif;
+
+    -moz-box-sizing:border-box;
+         box-sizing:border-box;
+
+    width: 20%;
+    height: 100%;
+    color: #ccc;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    line-height: 32px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    -webkit-transition: opacity .5s;
+       -moz-transition: opacity .5s;
+        -ms-transition: opacity .5s;
+         -o-transition: opacity .5s;
+            transition: opacity .5s;
+}
+
+.online #controls .users-online {
+    opacity: 1;
+}
+
+#controls .users-online:before {
+    font-family: "FontAwesome";
+    color: #555;
+    content: "\f007";
+    margin-right: 6px;
+}
+
+
+#controls .mark {
+    width: 10%;
+    height: 100%;
+    
+    text-align: right;
+}
+
+#controls .mark a {
+    display: inline-block;
+
+    background-image: url(../images/mark.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: right center;
+
+    margin-right: 6px;
+
+    width: 32px;
+    height: 32px;
+
+    text-decoration: none;
+}
+
+
+
+@media all and (orientation:portrait) {
+    #board {
+        bottom: 0;
+        right: 60px;
+        height: 100%;
+        width: auto;
+
+        padding: 6px 0px 6px 6px;
+    }
+
+    #controls {
+        padding: 0px 6px 14px 6px;
+        bottom: 0;
+        right: 0;
+        width: 50px;
+        height: 100%;   
+    }
+
+    #controls > * {
+        float: none;
+    }
+
+    #controls .colors {
+        padding-left: 0;
+        padding-top: 10px;
+        width: 100%;
+        height: 70%;
+    }
+
+    #controls .colors li {
+        display: inline-block;
+        float: none;
+        margin: 0 0 10px 0;
+    }
+
+    #controls .users-online {
+        display: -webkit-flex;
+        display:     -moz-box;
+        display:         flex;
+
+        -webkit-align-items: center;
+             -moz-box-align: center;
+                align-items: center;
+
+        width: 100%;
+        height: 20%;
+        font-size: 18px;
+        padding: 10% 0;
+    }
+
+    #controls .mark {
+        display: -webkit-flex;
+        display:     -moz-box;
+        display:         flex;
+
+        -webkit-align-items: flex-end;
+             -moz-box-align: flex-end;
+                align-items: flex-end;
+
+        width: 100%;
+        height: 10%;
+    }
 }

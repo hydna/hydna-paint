@@ -8,36 +8,32 @@ var TOUCH_DEVICE              = 'ontouchstart' in global ||
 
 
 (function setupController () {
-  var userColor = '#e53a3c';
   var input;
   var channel;
   var viewport;
-  var elem
+  var controls;
 
   function stateHandler (connected, reason) {
+    document.body.className = connected ? 'online' : 'offline';
     input.enabled = connected;
-    console.log("user id: %s", channel.userId);
-    console.log("user count: %s", channel.userCount);
+    controls.setOnlineUsers(channel.userCount);
   }
 
   function dataHandler (data) {
     if ('c' in data == false) {
-      data.c = userColor;
+      data.c = controls.color;
       channel.send(data);
     }
     viewport.draw(data);
   }
 
-  elem = document.getElementById('canvas');
-  viewport = new CanvasViewport(elem);
-
-  input = TOUCH_DEVICE ? new TouchInterface(elem)
-                       : new PointerInterface(elem);
+  channel = new PaintChannel(window.APP_URL || 'simple-paint.hydna.net');
+  controls = new PaintControls(document.getElementById('controls'));
+  viewport = new CanvasViewport(document.getElementById('canvas'));
+  input = TOUCH_DEVICE ? new TouchInterface(document.getElementById('canvas'))
+                       : new PointerInterface(document.getElementById('canvas'));
 
   input.ondata = dataHandler;
-
-  channel = new PaintChannel(window.APP_URL || 'simple-paint.hydna.net');
-
   channel.ondata = dataHandler;
   channel.onstate = stateHandler;
 }());
@@ -84,6 +80,7 @@ function PaintChannel (url) {
     };
 
     channel.onclose = function (event) {
+      console.log("close");
       self.userId = null;
       self.userCount = 0;
       connected = false;
@@ -102,10 +99,24 @@ function TouchInterface (target) {
 
   this.enabled = false;
 
-  function relativePos (t) {
-    return { x: t.pageX - t.target.parentNode.offsetLeft,
-             y: t.pageY - t.target.parentNode.offsetTop };
+  function translate (t) {
+    var target = t.target;
+    return { x: (t.pageX - target.parentNode.offsetLeft) *
+                    (target.width / target.clientWidth),
+             y: (t.pageY - target.parentNode.offsetTop) *
+                    (target.height / target.clientHeight) };
   }
+
+  document.addEventListener('touchstart', function (event) {
+    if (!event.target.control) {
+      event.preventDefault();
+    }
+  });
+
+  // Fix issue with iOS devices and orientation change
+  window.addEventListener('orientationchange', function() {
+    window.scrollTo(0, 0);
+  });
 
   target.addEventListener('touchstart', function (event) {
     var touch;
@@ -120,13 +131,12 @@ function TouchInterface (target) {
 
     for (var i = 0; i < event.changedTouches.length; i++) {
       touch = event.changedTouches[i];
-      moves[touch.identifier] = relativePos(touch);
+      moves[touch.identifier] = translate(touch);
     }
   });
 
   target.addEventListener('touchmove', function (event) {
     var touch;
-    var data;
     var move;
     var pos;
 
@@ -143,11 +153,8 @@ function TouchInterface (target) {
         continue;
       }
 
-      pos = relativePos(touch);
-      data = { x: pos.x, y: pos.y, px: move.x, py: move.y };
-
-      self.ondata(data);
-
+      pos = translate(touch);
+      self.ondata({ x: pos.x, y: pos.y, px: move.x, py: move.y });
       moves[touch.identifier] = pos;
     }
   });
@@ -181,6 +188,12 @@ function PointerInterface (target) {
 
   this.enabled = false;
 
+  function translate (e) {
+    var target = e.target;
+    return { x: (e.offsetX || e.layerX) * (target.width / target.clientWidth),
+             y: (e.offsetY || e.layerY) * (target.height / target.clientHeight)};
+  }
+
   function handler (name, callback) {
     if (target.attachEvent) {
       target.attachEvent('on' + name, callback);
@@ -194,23 +207,21 @@ function PointerInterface (target) {
       return;
     }
 
-    state = { x: event.offsetX, y: event.offestY };
+    state = translate(event);
 
     return false;
   });
 
   handler('mousemove', function (event) {
-    var data;
+    var pos;
 
     if (!state || self.enabled == false) {
       return;
     }
 
-    data = { x: event.offsetX, y: event.offsetY, px: state.x, py: state.y };
-
-    self.ondata(data);
-
-    state = { x: event.offsetX, y: event.offsetY };
+    pos = translate(event);
+    self.ondata({ x: pos.x, y: pos.y, px: state.x, py: state.y });
+    state = pos;
 
     return false;
   });
@@ -225,6 +236,7 @@ function PointerInterface (target) {
 function CanvasViewport (target) {
   var context = target.getContext('2d');
 
+  target.style.transform = "translatez(0)";
   target.onselectstart = function() { return false; };
 
   this.draw = function (data) {
@@ -238,5 +250,32 @@ function CanvasViewport (target) {
   };
 }
 
+
+function PaintControls (target) {
+  var self = this;
+  var users;
+  var all;
+  var initial;
+
+  users = target.getElementsByTagName('div')[0];
+
+  all = target.getElementsByTagName('input');
+  initial = all[~~(Math.random() * all.length)];
+  initial.setAttribute('checked', 'checked');
+
+  this.color = initial.value;
+
+  this.setOnlineUsers = function (value) {
+    users.innerHTML = value;
+  };
+
+  target.addEventListener('change', function (event) {
+    console.log("CHANGE");
+    // if (event.target.name == 'color') {
+      event.preventDefault();
+      self.color = event.target.value;
+    // }
+  }); 
+}
 
 }(this));
