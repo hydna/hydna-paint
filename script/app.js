@@ -72,6 +72,7 @@ function PaintChannel (url) {
 
     channel.onsignal = function (event) {
       self.userCount = parseInt(event.data);
+      self.onstate(connected);
     }
 
     channel.onmessage = function (event) {
