@@ -1,8 +1,6 @@
 (function (global) {
 'use strict';
 
-var URL                       = 'simple-paint.hydna.net';
-
 var BRUSH_WIDTH               = 8;
 
 var TOUCH_DEVICE              = 'ontouchstart' in global ||
@@ -38,7 +36,7 @@ var TOUCH_DEVICE              = 'ontouchstart' in global ||
 
   input.ondata = dataHandler;
 
-  channel = new PaintChannel(URL);
+  channel = new PaintChannel(window.APP_URL || 'simple-paint.hydna.net');
 
   channel.ondata = dataHandler;
   channel.onstate = stateHandler;

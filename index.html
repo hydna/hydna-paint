@@ -3,11 +3,14 @@
 <head>
   <title>Hydna Paint</title>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" charset="utf-8"></script>
-  <script type="text/javascript" src="http://cdn.hydna.com/1/hydna.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> 
-  <script src="./script/deps/excanvas.js"></script>
-  <script src="./script/deps/json.js"></script>
-  <link rel="stylesheet" href="./style/master.css" type="text/css" media="screen"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+  <link rel="stylesheet" href="./style/master.css" type="text/css" media="screen">
+  <script>
+
+    // Change URL to your domain
+    window.APP_URL = 'simple-paint.hydna.net';
+    
+  </script>
 </head>
 <body>
   <header>
@@ -21,5 +24,8 @@
   <div id="board">
     <canvas id="canvas" width="720" height="480"></canvas>
   </div>
+  <script src="./script/deps/excanvas.js"></script>
+  <script src="./script/deps/json.js"></script>
+  <script type="text/javascript" src="http://cdn.hydna.com/1/hydna.js"></script>
   <script src="./script/app.js"></script>
 </body>
