@@ -190,10 +190,9 @@ function PointerInterface (target) {
   var self = this;
   var state = null;
 
-  this.enabled = false;
+  this.enabled = true;
 
   function translate (e) {
-    var target = e.target;
     return { x: (e.offsetX || e.layerX) * (target.width / target.clientWidth),
              y: (e.offsetY || e.layerY) * (target.height / target.clientHeight)};
   }
@@ -207,6 +206,7 @@ function PointerInterface (target) {
   }
 
   handler('mousedown', function (event) {
+
     if (self.enabled == false) {
       return;
     }
@@ -238,7 +238,13 @@ function PointerInterface (target) {
 
 
 function CanvasViewport (target) {
-  var context = target.getContext('2d');
+  var context;
+  
+  if (typeof G_vmlCanvasManager == 'object') {
+    G_vmlCanvasManager.initElement(target);
+  }
+
+  context = target.getContext('2d');
 
   target.style.transform = "translatez(0)";
   target.onselectstart = function() { return false; };
@@ -259,6 +265,7 @@ function PaintControls (target) {
   var self = this;
   var users;
   var all;
+  var alls;
   var initial;
 
   users = target.getElementsByTagName('div')[0];
@@ -273,12 +280,26 @@ function PaintControls (target) {
     users.innerHTML = value;
   };
 
-  target.addEventListener('change', function (event) {
-    // if (event.target.name == 'color') {
+  function onchange (event) {
+    if (event.preventDefault) {
       event.preventDefault();
-      self.color = event.target.value;
-    // }
-  }); 
+    }
+    self.color = event.target.value;
+  }
+
+  if (target.addEventListener) {
+    target.addEventListener('change', onchange); 
+  } else {
+    all = target.getElementsByTagName('label');
+    for (var i = 0; i < all.length; i++) {
+      (function (label) {
+        label.attachEvent('onclick', function () {
+          var input = document.getElementById(label.getAttribute('for'));
+          onchange({ target: input });
+        });
+      }(all[i]))
+    }
+  }
 }
 
 }(this));

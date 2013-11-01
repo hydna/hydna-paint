@@ -22,6 +22,19 @@
     window.APP_URL = 'simple-paint.hydna.net';
     
   </script>
+  <!--[if lt IE 9 ]>
+    <script src="./script/deps/excanvas.js"></script>
+    <style>
+      .offline #board {
+          display: none;
+      }
+      .online #board {
+          display: block;
+          opacity: 1;
+      }
+      
+    </style>
+  <![endif]-->
 </head>
 <body>
   <div id="container">
@@ -112,9 +125,15 @@
       </div>
     </div>
   </div>
-  <!--[if lt IE 9 ]>
-    <script src="./script/deps/excanvas.js"></script>
-  <![endif]-->
   <script type="text/javascript" src="http://cdn.hydna.com/1/hydna.js"></script>
   <script src="./script/app.js"></script>
+  <!--[if lt IE 9 ]>
+    <script src="./script/deps/excanvas.js"></script>
+    <script>
+      setTimeout(function () {
+        document.body.className = 'offline';
+      }, 1);
+    
+    </script>
+  <![endif]-->
 </body>
