@@ -1,7 +1,7 @@
 (function (global) {
 'use strict';
 
-var BRUSH_WIDTH               = 8;
+var BRUSH_WIDTH               = 12;
 
 var TOUCH_DEVICE              = 'ontouchstart' in global ||
                                 'onmsgesturechange' in global;
