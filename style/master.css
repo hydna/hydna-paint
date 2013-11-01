@@ -310,6 +310,10 @@ ul {
         padding: 6px 0px 6px 6px;
     }
 
+    #board #new-board {
+        display: none;
+    }
+
     #controls {
         padding: 0px 6px 14px 6px;
         bottom: 0;
