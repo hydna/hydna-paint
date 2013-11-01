@@ -1,6 +1,6 @@
 // Behaviors for Hydna Paint
 
-behavior('/{wildcard}', {
+behavior('{wildcard}', {
     open: function (event) {
         event.channel.incr('active-users', function (err, count) {
             if (err) {
