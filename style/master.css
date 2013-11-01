@@ -23,6 +23,13 @@ body {
     font-family: arial, sans-serif;
     background-color: #2e3236;
     overflow: hidden;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 ul {
@@ -68,6 +75,7 @@ ul {
 }
 
 #board {
+
     opacity: 0;
 
     -webkit-transition: opacity .5s;
@@ -135,6 +143,21 @@ ul {
     cursor: crosshair;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
+}
+
+#board #new-board {
+    position: absolute;
+
+    background-image: url(../images/bg-new.png);
+    mask: url(../images/bg-new.png);
+    content: "\f067";
+
+    top: 5px;
+    right: 5px;
+    width: 45px;
+    height: 45px;
+
+    color: #fff;
 }
 
 #controls {

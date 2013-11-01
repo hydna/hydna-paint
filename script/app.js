@@ -43,6 +43,7 @@ var TOUCH_DEVICE              = 'ontouchstart' in global ||
 function PaintChannel (url) {
   var self = this;
   var connected = false;
+  var hash = '';
   var channel;
   var userid;
 
@@ -54,8 +55,12 @@ function PaintChannel (url) {
     channel.send(JSON.stringify(data), 2);
   };
 
+  if (location.hash && location.hash.length > 1) {
+    hash = '/' + location.hash.substr(1);
+  }
+
   (function setup () {
-    channel = new HydnaChannel(url, 'rw');
+    channel = new HydnaChannel(url + hash, 'rw');
 
     channel.onopen = function (event) {
       self.userId = event.data.split(',')[0];
