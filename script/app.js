@@ -273,8 +273,7 @@ function PaintControls (target) {
 
   all = target.getElementsByTagName('input');
   menu = document.getElementById('menu');
-  initial = all[~~(Math.random() * all.length)];
-  initial.setAttribute('checked', 'checked');
+  initial = all[0];
 
   this.color = initial.value;
 
