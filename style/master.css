@@ -105,6 +105,8 @@ ul {
     left: 0;
     bottom: 36px;
 
+    max-height: 625px;
+
     width: 100%;
     height: auto;
 }
@@ -126,21 +128,6 @@ ul {
     cursor: crosshair;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-}
-
-#board #new-board {
-    position: absolute;
-
-    background-image: url(../images/bg-new.png);
-    mask: url(../images/bg-new.png);
-    content: "\f067";
-
-    top: 5px;
-    right: 5px;
-    width: 45px;
-    height: 45px;
-
-    color: #fff;
 }
 
 #controls {
@@ -231,7 +218,7 @@ ul {
 #controls label[for="color-c"] { background-color: #F8F8F8; }
 
 
-#controls .users-online {
+#users-online {
     font-family: 'Nunito', sans-serif;
 
     -moz-box-sizing:border-box;
@@ -257,11 +244,11 @@ ul {
             transition: opacity .5s;
 }
 
-.online #controls .users-online {
+.online #users-online {
     opacity: 1;
 }
 
-#controls .users-online:before {
+#users-online:before {
     font-family: "FontAwesome";
     color: #555;
     content: "\f007";
@@ -293,8 +280,23 @@ ul {
 }
 
 
+@media (min-width: 1000px) {
+    #board {
+        left: 50%;
+        margin-left: -500px;
+        max-width: 1000px;
+    }
 
-@media all and (orientation:portrait) {
+    #controls {
+        left: 50%;
+        margin-left: -500px;
+        max-width: 1000px;
+    }
+}
+
+
+
+/*@media all and (orientation:portrait) {
     #board {
         bottom: 0;
         right: 0;
@@ -302,10 +304,6 @@ ul {
         width: auto;
 
         padding: 0px;
-    }
-
-    #board #new-board {
-        display: none;
     }
 
     #controls {
@@ -360,29 +358,49 @@ ul {
         width: 100%;
         height: 10%;
     }
-}
+}*/
 
-
-#menu {
+#menu-expander {
     display: none;
 }
 
 @media all and (max-width: 640px) {
+
     #menu {
+        position: absolute;
+
+        left: 0;
+        right: 0;
+        bottom: -100px;
+        height: 170px;
+        width: 100%;
+
+        -webkit-transition: bottom .5s;
+           -moz-transition: bottom .5s;
+            -ms-transition: bottom .5s;
+             -o-transition: bottom .5s;
+                transition: bottom .5s;
+
+    }
+
+    #menu.visible {
+        bottom: 0;
+    }
+
+    #menu-expander {
         display: block;
         position: absolute;
-        bottom: 10px;
         right: 0;
         background: #2d3236;
         padding: 20px;
         text-decoration: none;
         font-weight: bold;
         color: #FFF;
-
     }
 
     #board {
         position: absolute;
+        padding: 0;
         top: 0;
         left: 0;
         right: 0;
@@ -393,23 +411,26 @@ ul {
     }
 
     #controls {
-        background: #EEE;
         position: absolute;
-        top: 0;
-        bottom: 0;
-        right: -100%;
-        height: 100%;
-        width: 100%;
-
-    -webkit-transition: right .5s;
-       -moz-transition: right .5s;
-        -ms-transition: right .5s;
-         -o-transition: right .5s;
-            transition: right .5s;
+        padding: 6px 8px 12px 8px;
+        top: 80px;
+        height: 90px;
+        background: #EEE;
     }
 
-    #controls.visible {
-        right: 0;
+    #controls > * {
+        float: none;
+    }
+
+    #controls .colors {
+        width: 100%;
+        height: auto;
+    }
+
+    #controls .colors li {
+        margin: 0 6px 20px 0;
+        width: 32px;
+        height: 32px;
     }
 
     #controls .control {
@@ -419,4 +440,21 @@ ul {
     #controls .about {
         margin: 10px;
     }
+
+    #users-online {
+        position: absolute;
+        bottom: 6px;
+        left: 10px;
+        width: auto;
+        height: auto;
+    }
+
+    #controls .mark {
+        position: absolute;
+        bottom: 6px;
+        right: 10px;
+        width: auto;
+        height: auto;
+    }
+
 }

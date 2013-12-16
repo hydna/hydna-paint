@@ -28,7 +28,7 @@ var TOUCH_DEVICE              = 'ontouchstart' in global ||
   }
 
   channel = new PaintChannel(window.APP_URL || 'simple-paint.hydna.net');
-  controls = new PaintControls(document.getElementById('controls'));
+  controls = new PaintControls(document.getElementById('menu'));
   viewport = new CanvasViewport(document.getElementById('canvas'));
   input = TOUCH_DEVICE ? new TouchInterface(document.getElementById('canvas'))
                        : new PointerInterface(document.getElementById('canvas'));
@@ -269,10 +269,10 @@ function PaintControls (target) {
   var initial;
   var menu;
 
-  users = target.getElementsByTagName('div')[0];
+  users = document.getElementById('users-online');
+  menu = document.getElementById('menu-expander');
 
   all = target.getElementsByTagName('input');
-  menu = document.getElementById('menu');
   initial = all[0];
 
   this.color = initial.value;
