@@ -370,3 +370,71 @@ ul {
         height: 10%;
     }
 }
+
+
+#menu {
+    display: none;
+}
+
+@media all and (max-width: 640px) {
+    #menu {
+        display: block;
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+        background: #2d3236;
+        padding: 20px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #FFF;
+
+    }
+
+    #board {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    /* .colors li:nth-child(7), */
+    /* .colors li:nth-child(8), */
+    /* .colors li:nth-child(9), */
+    /* .colors li:nth-child(10), */
+    /* .colors li:nth-child(11), */
+    /* .colors li:nth-child(12) { */
+    /*     display: none; */
+    /* } */
+
+    #controls {
+        background: #EEE;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -100%;
+        height: 100%;
+        width: 100%;
+
+    -webkit-transition: right .5s;
+       -moz-transition: right .5s;
+        -ms-transition: right .5s;
+         -o-transition: right .5s;
+            transition: right .5s;
+    }
+
+    #controls.visible {
+        right: 0;
+    }
+
+    #controls .control {
+        margin: 10px;
+    }
+
+    #controls .about {
+        margin: 10px;
+    }
+}

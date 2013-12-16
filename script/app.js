@@ -267,10 +267,12 @@ function PaintControls (target) {
   var all;
   var alls;
   var initial;
+  var menu;
 
   users = target.getElementsByTagName('div')[0];
 
   all = target.getElementsByTagName('input');
+  menu = document.getElementById('menu');
   initial = all[~~(Math.random() * all.length)];
   initial.setAttribute('checked', 'checked');
 
@@ -280,6 +282,11 @@ function PaintControls (target) {
     users.innerHTML = value;
   };
 
+  function onmenuclick () {
+    target.className = target.className ? '' : 'visible';
+    return false;
+  }
+
   function onchange (event) {
     if (event.preventDefault) {
       event.preventDefault();
@@ -288,7 +295,9 @@ function PaintControls (target) {
   }
 
   if (target.addEventListener) {
-    target.addEventListener('change', onchange); 
+    target.addEventListener('change', onchange);
+    menu.addEventListener('touchstart', onmenuclick);
+    menu.addEventListener('click', onmenuclick);
   } else {
     all = target.getElementsByTagName('label');
     for (var i = 0; i < all.length; i++) {
@@ -297,8 +306,9 @@ function PaintControls (target) {
           var input = document.getElementById(label.getAttribute('for'));
           onchange({ target: input });
         });
-      }(all[i]))
+      }(all[i]));
     }
+    menu.attachEvent('onclick', onmenuclick);
   }
 }
 
