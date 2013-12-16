@@ -43,15 +43,6 @@
     </div>
     <div id="board">
       <canvas id="canvas" width="720" height="480"></canvas>
-      <svg id="new-board">
-        <a xlink:href="#"
-           xlink:title="New random board"
-           onclick="document.location='#'+(~~(Math.random() * 0xfffffff)).toString(16);
-                    document.location.reload();
-                    return false;">
-            <polygon points="0, 0, 100, 100, 60, 10" fill="transparent" />
-        </a>
-      </svg>
     </div>
     <div id="controls">
       <ul class="colors">
