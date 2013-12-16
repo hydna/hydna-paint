@@ -223,21 +223,21 @@ ul {
     box-shadow: 0px 0px 4px rgba(0,0,0, .9);
 }
 
-#controls label[for="c8EAA79"] { background-color: #8EAA79; }
-#controls label[for="cFF9026"] { background-color: #FF9026; }
-#controls label[for="cEE4900"] { background-color: #EE4900; }
-#controls label[for="cC40800"] { background-color: #C40800; }
-#controls label[for="c050B01"] { background-color: #050B01; }
-#controls label[for="c1C6E67"] { background-color: #1C6E67; }
-#controls label[for="c1C8F77"] { background-color: #1C8F77; }
-#controls label[for="c9F976A"] { background-color: #9F976A; }
-#controls label[for="cD19C6F"] { background-color: #D19C6F; }
-#controls label[for="cD63333"] { background-color: #D63333; }
-#controls label[for="cFFFFFF"] { background-color: #FFFFFF; }
-#controls label[for="c002930"] { background-color: #002930; }
-#controls label[for="cF8F0AF"] { background-color: #F8F0AF; }
-#controls label[for="cAC4A00"] { background-color: #AC4A00; }
-#controls label[for="c000000"] { background-color: #000000; }
+#controls label[for="color-1"] { background-color: #FF6C4F; }
+#controls label[for="color-2"] { background-color: #ACC791; }
+#controls label[for="color-3"] { background-color: #78A8CC; }
+
+#controls label[for="color-4"] { background-color: #87BDC4; }
+#controls label[for="color-5"] { background-color: #B37FD4; }
+#controls label[for="color-6"] { background-color: #E8A474; }
+
+#controls label[for="color-7"] { background-color: #C94C32; }
+#controls label[for="color-8"] { background-color: #7C8F68; }
+#controls label[for="color-9"] { background-color: #4C708C; }
+
+#controls label[for="color-a"] { background-color: #46747A; }
+#controls label[for="color-b"] { background-color: #733699; }
+#controls label[for="color-c"] { background-color: #F8F8F8; }
 
 
 #controls .users-online {
