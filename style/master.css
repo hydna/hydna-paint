@@ -105,7 +105,7 @@ ul {
     left: 0;
     bottom: 36px;
 
-    max-height: 625px;
+    max-height: 625px; 
 
     width: 100%;
     height: auto;
@@ -269,7 +269,7 @@ ul {
     background-image: url(../images/mark.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-position: right center;
+    background-position: right bottom;
 
     margin-right: 6px;
 
