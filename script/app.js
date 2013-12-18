@@ -118,7 +118,8 @@ function TouchInterface (target) {
 
   function translate (t) {
     var target = t.target;
-    return { x: (t.pageX - target.parentNode.offsetLeft) *
+    return { x: (t.pageX - (target.parentNode.offsetLeft +
+                            target.parentNode.offsetTop)) *
                     (target.width / target.clientWidth),
              y: (t.pageY - target.parentNode.offsetTop) *
                     (target.height / target.clientHeight) };
@@ -150,6 +151,7 @@ function TouchInterface (target) {
 
     for (var i = 0; i < event.changedTouches.length; i++) {
       touch = event.changedTouches[i];
+      console.log(translate(touch));
       moves[touch.identifier] = translate(touch);
     }
   });
