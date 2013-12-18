@@ -99,15 +99,16 @@ ul {
          box-sizing: border-box;
 
     margin: 0 0 0 0;
-    padding: 26px 26px 0 26px;
+    padding-left: 26px;
+    padding-right: 26px;
 
-    top: 0;
+    top: 26px;
     left: 0;
-    bottom: 36px;
+    right: 0;
+    bottom: 56px;
 
     max-height: 625px; 
 
-    width: 100%;
     height: auto;
 }
 
