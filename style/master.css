@@ -202,6 +202,10 @@ ul {
     border-radius: 28px;
 }
 
+#controls .colors input:checked + label[for="color-8"]:after {
+    background: #AAA;
+}
+
 #controls label[for="color-1"] { background-color: #FF6C4F; }
 #controls label[for="color-2"] { background-color: #ACC791; }
 #controls label[for="color-3"] { background-color: #78A8CC; }
@@ -211,7 +215,7 @@ ul {
 #controls label[for="color-6"] { background-color: #E8A474; }
 
 #controls label[for="color-7"] { background-color: #C94C32; }
-#controls label[for="color-8"] { background-color: #7C8F68; }
+#controls label[for="color-8"] { background-color: #FFFFFF; }
 #controls label[for="color-9"] { background-color: #4C708C; }
 
 #controls label[for="color-a"] { background-color: #46747A; }
