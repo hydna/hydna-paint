@@ -219,19 +219,21 @@ ul {
 
 
 #users-online {
+    display: inline-block;
+
     font-family: 'Nunito', sans-serif;
 
     -moz-box-sizing:border-box;
          box-sizing:border-box;
 
-    width: 20%;
-    height: 100%;
+    margin-right: 20px;
+
     color: #ccc;
 
     font-size: 32px;
     font-weight: 700;
 
-    line-height: 32px;
+    line-height: 38px;
 
     text-align: center;
 
@@ -257,7 +259,7 @@ ul {
 
 
 #controls .mark {
-    width: 10%;
+    width: 30%;
     height: 100%;
     
     text-align: right;
