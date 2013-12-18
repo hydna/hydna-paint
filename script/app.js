@@ -8,13 +8,16 @@ var TOUCH_DEVICE              = 'ontouchstart' in global ||
 
 
 (function setupController () {
+  var body;
   var input;
   var channel;
   var viewport;
   var controls;
 
+  body = document.body;
+
   function stateHandler (connected, reason) {
-    document.body.className = connected ? 'online' : 'offline';
+    body.className = connected ? 'online' : 'offline';
     input.enabled = connected;
     controls.setOnlineUsers(channel.userCount);
   }
@@ -27,6 +30,14 @@ var TOUCH_DEVICE              = 'ontouchstart' in global ||
     viewport.draw(data);
   }
 
+  function startMoveHandler () {
+    body.className = 'painting online';
+  }
+
+  function stopMoveHandler () {
+    body.className = 'online';
+  }
+
   channel = new PaintChannel(window.APP_URL || 'simple-paint.hydna.net');
   controls = new PaintControls(document.getElementById('menu'));
   viewport = new CanvasViewport(document.getElementById('canvas'));
@@ -34,6 +45,8 @@ var TOUCH_DEVICE              = 'ontouchstart' in global ||
                        : new PointerInterface(document.getElementById('canvas'));
 
   input.ondata = dataHandler;
+  input.onstartmove = startMoveHandler;
+  input.onstopmove = stopMoveHandler;
   channel.ondata = dataHandler;
   channel.onstate = stateHandler;
 }());
@@ -129,6 +142,8 @@ function TouchInterface (target) {
       return;
     }
 
+    self.onstartmove();
+
     event.preventDefault();
 
     moves = moves || {};
@@ -165,6 +180,8 @@ function TouchInterface (target) {
 
   target.addEventListener('touchend', function (event) {
     var touch;
+
+    self.onstopmove();
 
     if (!moves) {
       return;
@@ -211,6 +228,8 @@ function PointerInterface (target) {
       return;
     }
 
+    self.onstartmove();
+
     state = translate(event);
 
     return false;
@@ -231,6 +250,7 @@ function PointerInterface (target) {
   });
 
   handler('mouseup', function (event) {
+    self.onstopmove();
     state = null;
     return false;
   });

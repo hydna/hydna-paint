@@ -364,6 +364,10 @@ ul {
     display: none;
 }
 
+.painting #menu {
+    pointer-events: none;
+}
+
 @media all and (max-width: 640px) {
 
     #menu {
