@@ -450,8 +450,7 @@ ul {
 
     #users-online {
         position: absolute;
-        bottom: 6px;
-        left: 10px;
+        left: 20px;
         width: auto;
         height: auto;
     }
@@ -460,7 +459,7 @@ ul {
         position: absolute;
         bottom: 6px;
         right: 10px;
-        width: auto;
+        width: 100%;
         height: auto;
     }
 
